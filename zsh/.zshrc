@@ -66,3 +66,12 @@ command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 # --- Machine-specific overrides ---
 source ~/.zshrc.local 2>/dev/null || true
+
+# -- yazi shortcut and function to open cwd on quit
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
