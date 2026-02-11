@@ -1,0 +1,4 @@
+--theme="Visual Studio Dark+"
+--style="numbers,changes,header"
+--map-syntax="*.env:DotENV"
+--map-syntax=".env.*:DotENV"

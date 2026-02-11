@@ -1,0 +1,51 @@
+[user]
+	name = lolmos
+	email = lolmos@ploobo.com
+
+[core]
+	editor = nvim
+	pager = delta
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[fetch]
+	prune = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[rebase]
+	autoStash = true
+
+[rerere]
+	enabled = true
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = tokyonight_night
+
+[interactive]
+	diffFilter = delta --color-only
+
+[alias]
+	s = status -sb
+	l = log --oneline -20
+	la = log --oneline --all -20
+	ll = log --oneline --all --graph
+	unstage = reset HEAD --
+	undo = reset --soft HEAD~1
+	wip = !git add -A && git commit -m 'wip'
+	cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d
