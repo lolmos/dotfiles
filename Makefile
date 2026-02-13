@@ -1,4 +1,4 @@
-PACKAGES = zsh starship nvim tmux lazygit git bat yazi fzf
+PACKAGES = zsh starship nvim tmux lazygit git bat yazi fzf ripgrep
 
 .PHONY: install uninstall restow post-install clean help
 
@@ -44,6 +44,13 @@ post-install: ## Install TPM and oh-my-zsh custom plugins if missing
 			$$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting; \
 	else \
 		echo "zsh-syntax-highlighting already installed"; \
+	fi
+	@if [ ! -d "$$HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode" ]; then \
+		echo "Installing zsh-vi-mode..."; \
+		git clone https://github.com/jeffreytse/zsh-vi-mode \
+			$$HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode; \
+	else \
+		echo "zsh-vi-mode already installed"; \
 	fi
 
 clean: ## Remove all stow symlinks and plugin dirs

@@ -6,6 +6,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Fix for Ghostty terminal
 [ "$TERM" = "xterm-ghostty" ] && export TERM=xterm-256color
@@ -18,7 +19,7 @@ plugins=(
   git
   docker
   docker-compose
-  vi-mode
+  zsh-vi-mode
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -47,7 +48,6 @@ alias lt="eza --tree"
 alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
-alias y="yazi"
 
 # --- Git aliases ---
 alias gs="git status"
@@ -63,6 +63,8 @@ alias gb="git branch"
 eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+command -v atuin &>/dev/null && eval "$(atuin init zsh)"
 
 # --- Machine-specific overrides ---
 source ~/.zshrc.local 2>/dev/null || true
