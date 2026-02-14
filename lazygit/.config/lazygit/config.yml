@@ -33,9 +33,9 @@ gui:
     defaultBgColor:
       - default
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
   log:
     order: topo-order
     showGraph: always
