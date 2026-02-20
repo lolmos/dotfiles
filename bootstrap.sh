@@ -30,21 +30,39 @@ PACKAGES=(stow git curl zsh)
 case "$PM" in
   apt-get)
     sudo apt-get update
-    PACKAGES+=(neovim tmux fzf bat eza fd-find zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd-find zoxide ripgrep direnv lazygit yazi)
     ;;
   dnf)
-    PACKAGES+=(neovim tmux fzf bat eza fd-find zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd-find zoxide ripgrep direnv lazygit yazi)
     ;;
   pacman)
-    PACKAGES+=(neovim tmux fzf bat eza fd zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd zoxide ripgrep direnv lazygit yazi)
     ;;
   brew)
-    PACKAGES+=(neovim tmux fzf bat eza fd zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd zoxide ripgrep direnv lazygit yazi)
     ;;
 esac
 
 echo "==> Installing packages..."
 $INSTALL "${PACKAGES[@]}" || echo "Some packages may need manual installation"
+
+# --- fzf (from GitHub for latest version) ---
+if [ ! -d "$HOME/.fzf" ]; then
+  echo "==> Installing fzf..."
+  git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+  "$HOME/.fzf/install" --all --no-update-rc
+fi
+
+# --- Sesh (tmux session manager) ---
+if ! command -v sesh &>/dev/null; then
+  echo "==> Installing sesh..."
+  SESH_VERSION=$(curl -sL https://api.github.com/repos/joshmedeski/sesh/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+  SESH_VERSION_NUM="${SESH_VERSION#v}"
+  curl -sL "https://github.com/joshmedeski/sesh/releases/download/${SESH_VERSION}/sesh_Linux_x86_64.tar.gz" | tar xz -C /tmp sesh
+  sudo mv /tmp/sesh /usr/local/bin/sesh
+  sudo chmod +x /usr/local/bin/sesh
+  echo "    Installed sesh $SESH_VERSION"
+fi
 
 # --- Starship ---
 if ! command -v starship &>/dev/null; then

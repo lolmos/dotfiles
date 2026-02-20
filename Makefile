@@ -1,4 +1,4 @@
-PACKAGES = zsh starship nvim tmux lazygit git bat yazi fzf ripgrep
+PACKAGES = zsh starship nvim tmux lazygit git bat yazi fzf ripgrep sesh
 
 .PHONY: install uninstall restow post-install clean help
 

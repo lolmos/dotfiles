@@ -1,0 +1,8 @@
+[default_session]
+startup_command = ""
+
+[lister]
+sort = "LastAttached"
+
+[[lister.sources]]
+name = "zoxide"
