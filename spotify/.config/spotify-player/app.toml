@@ -1,0 +1,22 @@
+# spotify_player configuration
+# Docs: https://github.com/aome510/spotify-player/blob/master/docs/config.md
+
+theme = "default"
+
+# Playback
+playback_format = "{track} • {artists} — {album}"
+notify_format = "{track}\n{artists}"
+
+# UI
+cover_img_length = 9
+cover_img_width = 5
+cover_img_scale = 1.0
+
+# Streaming (plays audio directly in terminal — requires a Spotify Premium account)
+# Set device_name to identify this client in Spotify Connect
+[device]
+name = "spotify-player"
+volume = 70
+bitrate = 320        # 96, 160, or 320
+audio_cache = true
+normalization = false

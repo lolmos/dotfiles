@@ -48,6 +48,11 @@ alias lt="eza --tree"
 alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
+alias sp="spotify_player"
+
+# --- Zoxide ---
+alias cd="z"
+alias cdi="zi"  # interactive fuzzy picker
 
 # --- Git aliases ---
 alias gs="git status"

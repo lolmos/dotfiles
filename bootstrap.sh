@@ -30,16 +30,16 @@ PACKAGES=(stow git curl zsh)
 case "$PM" in
   apt-get)
     sudo apt-get update
-    PACKAGES+=(neovim tmux bat eza fd-find zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd-find zoxide ripgrep direnv lazygit yazi btop ncdu)
     ;;
   dnf)
-    PACKAGES+=(neovim tmux bat eza fd-find zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd-find zoxide ripgrep direnv lazygit yazi btop ncdu)
     ;;
   pacman)
-    PACKAGES+=(neovim tmux bat eza fd zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd zoxide ripgrep direnv lazygit yazi btop ncdu)
     ;;
   brew)
-    PACKAGES+=(neovim tmux bat eza fd zoxide ripgrep direnv lazygit yazi)
+    PACKAGES+=(neovim tmux bat eza fd zoxide ripgrep direnv lazygit yazi btop ncdu)
     ;;
 esac
 
@@ -80,6 +80,17 @@ fi
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "==> Installing oh-my-zsh..."
   RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# --- spotify_player ---
+if ! command -v spotify_player &>/dev/null; then
+  echo "==> Installing spotify_player..."
+  SP_VERSION=$(curl -sL https://api.github.com/repos/aome510/spotify-player/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+  curl -Lo /tmp/spotify_player.tar.gz -L \
+    "https://github.com/aome510/spotify-player/releases/download/${SP_VERSION}/spotify_player-x86_64-unknown-linux-gnu.tar.gz"
+  tar -xzf /tmp/spotify_player.tar.gz -C "$HOME/.local/bin" spotify_player
+  chmod +x "$HOME/.local/bin/spotify_player"
+  echo "    Installed spotify_player $SP_VERSION"
 fi
 
 # --- Delta (git pager) ---
