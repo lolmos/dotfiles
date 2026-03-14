@@ -49,6 +49,9 @@ alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
 alias sp="spotify_player"
+alias claudeyolo="claude --dangerously-skip-permissions"
+alias copilot-gemini="gh copilot --model gemini-3-pro --yolo"
+alias copilot-codex="gh copilot --model gpt-5.3-codex --yolo"
 
 # --- Zoxide ---
 alias cd="z"
