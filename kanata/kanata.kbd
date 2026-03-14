@@ -1,0 +1,64 @@
+;; Kanata configuration for Logitech Ergo K860
+;; Phase 1: Left-hand home row mods only
+;;
+;; Home row mods (left hand):
+;;   A = tap: a, hold: Ctrl
+;;   S = tap: s, hold: Alt (Option)
+;;   D = tap: d, hold: Cmd
+;;   F = tap: f, hold: Shift
+;;
+;; Everything else passes through unchanged.
+;; F-keys, media keys, and all special keys work normally.
+
+(defcfg
+  ;; Keys not listed in defsrc pass through unchanged —
+  ;; this is how we keep F-keys, media keys, etc. working
+  process-unmapped-keys yes
+
+  ;; Allow multiple home row mods held simultaneously (e.g., Ctrl+Shift)
+  concurrent-tap-hold yes
+
+  ;; Filter to your keyboard — find the exact name with:
+  ;;   sudo kanata --list-devices
+  ;; Uncomment and update with your Logitech Ergo K860 device name:
+  ;; macos-dev-names-include (
+  ;;   "Logitech USB Keyboard"
+  ;; )
+)
+
+;; Timing variables — adjust these based on comfort
+;; tap-time:  max ms a press-and-release counts as a tap (letter)
+;; hold-time: ms before a held key becomes a modifier
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+;; Bilateral keys — only opposite-hand keys trigger the modifier hold.
+;; Same-hand rolls (like "sd", "df") stay as normal typing.
+(defvar
+  right-hand-keys (
+    y u i o p
+    h j k l ;
+    n m , . /
+  )
+)
+
+;; Phase 1: Left-hand home row mods only
+;; Right hand stays completely normal for now
+(defalias
+  a (tap-hold-release-keys $tap-time $hold-time a lctl $right-hand-keys)
+  s (tap-hold-release-keys $tap-time $hold-time s lalt $right-hand-keys)
+  d (tap-hold-release-keys $tap-time $hold-time d lmet $right-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time f lsft $right-hand-keys)
+)
+
+;; Only list the keys we want to remap.
+;; With process-unmapped-keys yes, everything else passes through.
+(defsrc
+  caps a    s    d    f    g    h    j    k    l    ;    '
+)
+
+(deflayer base
+  esc  @a   @s   @d   @f   g    h    j    k    l    ;    '
+)
