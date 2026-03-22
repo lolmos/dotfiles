@@ -1,6 +1,9 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
+# --- Context detection (must be first) ---
+. "$HOME/.config/dotfiles/detect.sh" 2>/dev/null
+
 # --- Environment ---
 export EDITOR=nvim
 export VISUAL=nvim

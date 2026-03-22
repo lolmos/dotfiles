@@ -1,4 +1,4 @@
-PACKAGES = zsh starship nvim tmux lazygit git bat yazi fzf ripgrep sesh spotify
+PACKAGES = context zsh starship nvim tmux lazygit git bat yazi fzf ripgrep sesh spotify
 
 .PHONY: install uninstall restow post-install clean help
 

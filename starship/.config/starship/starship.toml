@@ -2,6 +2,7 @@
 # Matches your nvim Tokyo Night theme
 
 format = """
+${env_var.DOTFILES_LABEL}\
 [](#9d7cd8)\
 $os\
 $username\
@@ -151,6 +152,13 @@ format = '[ $symbol ($version) ]($style)'
 symbol = " "
 style = "bg:#212234"
 format = '[ $symbol ($version) ]($style)'
+
+# Context indicator — only shows for non-local environments
+[env_var.DOTFILES_LABEL]
+format = '[$env_value ]($style)'
+style = 'bold bg:#f7768e fg:#1a1b26'
+variable = 'DOTFILES_LABEL'
+default = ''
 
 [character]
 success_symbol = '[➜](bold #7dcfff)'
