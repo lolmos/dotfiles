@@ -49,3 +49,9 @@
 	undo = reset --soft HEAD~1
 	wip = !git add -A && git commit -m 'wip'
 	cleanup = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
