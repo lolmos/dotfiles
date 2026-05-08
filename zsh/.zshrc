@@ -73,7 +73,6 @@ alias gb="git branch"
 # --- Tool init ---
 eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 command -v atuin &>/dev/null && eval "$(atuin init zsh)"
 
@@ -88,3 +87,6 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# zoxide must be initialized last so its `cd` override isn't clobbered by atuin/direnv/.zshrc.local
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
